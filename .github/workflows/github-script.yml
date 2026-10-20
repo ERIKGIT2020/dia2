@@ -1,0 +1,34 @@
+
+name: Automate GitHub by using GitHub Script
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  automatizacion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Mostrar informacion
+        uses: actions/github-script@v9
+        with:
+          script: |
+            console.log("Hola desde GitHub Script");
+            console.log("Usuario:", context.actor);
+            console.log("Repositorio:", context.repo.repo);
+
+      - name: Crear un Issue automaticamente
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const resultado = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Issue creado con GitHub Script",
+              body: "Este Issue fue creado automaticamente mediante GitHub Actions."
+            });
+
+            console.log("Issue creado:", resultado.data.html_url);
