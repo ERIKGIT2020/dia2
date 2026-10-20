@@ -1,0 +1,13 @@
+{
+  "name": "@erikgit2020/mi-paquete",
+  "version": "1.0.0",
+  "description": "Mi primer paquete publicado con GitHub Actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"console.log('Prueba correcta')\""
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "license": "MIT"
+}
